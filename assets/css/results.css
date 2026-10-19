@@ -1,0 +1,48 @@
+/* Agima project page: hero author links, and Table 1 (the K table): its column sizing and the emphasis on
+   Agima-A7B's number in the selected column. Loaded after styles.css; uses its tokens. */
+
+/* ---------- hero: author names link to their homepages (the affiliation marks stay outside the link) ---------- */
+.author-link {
+  color: inherit;
+  text-decoration: underline 1px transparent;   /* underline only on hover */
+  text-underline-offset: .22em;
+}
+.author-link:hover { text-decoration-color: var(--ink); }
+.author-link:focus-visible { border-radius: 3px; outline-offset: 1px; }
+
+/* ---------- results: the section title never breaks inside "Easy-to-hard" ---------- */
+.nobr { white-space: nowrap; }
+
+/* ---------- Table 1: every number carries a %. A click or tap anywhere in a column selects it, like its K
+   button in the header (or the arrow keys there); Agima-A7B's number in that column turns bold, blue and
+   larger ---------- */
+.kt td[data-k] { cursor: pointer; text-align: center; }
+.data-table.kt td[data-k] { min-width: 0; padding-inline: 3px; }
+.kt-n {
+  display: inline-block;
+  text-align: center;
+  transform-origin: 50% 55%;
+  transition: transform 220ms var(--ease), color 180ms ease;
+}
+/* a hidden, zero-height bold copy of the number keeps the box as wide as the number in bold, so turning bold
+   never widens the column; it comes first, so the box keeps the visible number's baseline */
+.kt-n::before { content: attr(data-n); display: block; height: 0; overflow: hidden; visibility: hidden; font-weight: 600; }
+.kt-pct { margin-left: .04em; font-size: .82em; }
+/* the scale is a transform, so the row and the columns do not move */
+.kt tr.is-ours td.is-sel .kt-n { color: var(--blue-ink); font-weight: 600; transform: scale(1.2); }
+@media (prefers-reduced-motion: reduce) {
+  .kt-n { transition: none; }
+}
+/* a hovered method row (mouse) takes a faint tint, to read it against Agima-A7B's row */
+@media (hover: hover) {
+  .kt tbody tr:not(.is-ours):not(.group-row):hover > * { background: var(--mist); }
+}
+/* the method column fits "Agima-A7B (No Imagine)" on one line; the twenty number columns share the rest */
+.kt th.kt-method, .kt tbody th { width: 11.6em; white-space: nowrap; }
+@media (max-width: 900px) {
+  /* one environment at a time: five wide columns again */
+  .kt th.kt-method, .kt tbody th { width: auto; }
+}
+@media (max-width: 640px) {
+  .kt tbody th { white-space: normal; }
+}
