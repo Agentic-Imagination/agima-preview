@@ -141,7 +141,9 @@ and respect `prefers-reduced-motion` (nothing moves by itself; plans show comple
 
 ## Still to do before release
 
-- **Links**: set the `href` of the Paper, arXiv and Code buttons in the hero (`TODO(links)` in `index.html`).
+- **Links**: set the `href` of the arXiv button in the hero (`TODO(links)` in `index.html`). Paper links to
+  `assets/paper/agima.pdf` (compiled from the Overleaf project with pdflatex); Code links to
+  github.com/Agentic-Imagination/Agima.
   While a button is marked `data-todo` with `href="#"`, it carries `aria-disabled="true"` and `title="Coming soon"`
   and does nothing on click. Remove `data-todo`, `aria-disabled` and `title` once its link is real.
 - **BibTeX**: fill in the venue and year (`TODO(bibtex)` in `index.html`).
